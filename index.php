@@ -183,6 +183,82 @@ if(isset($_GET['action'])){
         save_importation_defini();
     }
 
+    if($action == 'evolution_import'){
+        evolution_import();
+    }
+
+    if($action == 'doc'){
+        doc();
+    }
+
+    if($action == 'doc-installation'){
+        doc_installation();
+    }
+
+    if($action == 'doc-def-transaction'){
+        doc_def_transaction();
+    }
+
+    if($action == 'doc-stat'){
+        doc_stat();
+    }
+
+    if($action == 'export_mensuelle_cargaisons'){
+        export_mensuelle_cargaisons();
+    }
+
+    if($action == 'export_mensu_carg_view'){
+        export_mensu_carg_view();
+    }
+
+    if($action == 'import_annuelle_soute'){
+        import_annuelle_soute();
+    }
+
+    if($action == 'import_annu_soute_view'){
+        import_annu_soute_view();
+    }
+
+    if($action == 'add_actor'){
+        add_actor();
+    }
+
+    if($action == 'start-produits'){
+        start_produits();
+    }
+
+    if($action == 'stat_prod_import'){
+        stat_prod_import();
+    }
+
+    if($action == 'list-product-export'){
+        list_product_export();
+    }
+
+    if($action == 'notification_intercep'){
+        notification_intercep();
+    }
+
+    if($action == 'save_certificat'){
+        save_certificat();
+    }
+
+    if($action == 'notif_inter'){
+        notif_inter();
+    }
+
+    if($action == 'notif_inter2'){
+        notif_inter2();
+    }
+
+    if($action == 'save_certificat2'){
+        save_certificat2();
+    }
+
+    if($action == 'notif_interImp'){
+        notif_interImp();
+    }
+
 
 }else{
     home();

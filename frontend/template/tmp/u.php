@@ -6,6 +6,7 @@
 <title> <?= $title ?> </title>
 <link href="frontend/public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<link rel="shortcut icon" href="frontend/public/img/Green.PNG">
 <script src="frontend/public/js/jquery-1.11.0.min.js"></script>
 <!-- Custom Theme files -->
 <link href="frontend/public/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -85,12 +86,23 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
         justify-content:center;
     }
 	body{
-		background:url('frontend/public/img/cameroun_-_port_de_douala_fau_1788727612_dit-conteneurs_800xyyy-800x480.jpg');
+		background:url('frontend/public/img/c0r.jpg');
 		background-attachment:fixed;
 		background-size:cover;
 	}
 </style>
 <body>
+
+<script>
+function imprimer(divName) {
+      var printContents = document.getElementById(divName).innerHTML;    
+   var originalContents = document.body.innerHTML;      
+   document.body.innerHTML = printContents;     
+   window.print();     
+   document.body.innerHTML = originalContents;
+   }
+</script> 
+
 
 	<!--top-header-->
 	<div class="top-header">
@@ -117,8 +129,16 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 				    <div class="col-md-4 serch1">
 					<a class=" btn btn-success <?= $active5 ?>" href="?action=definir"><i class="glyphicon glyphicon-time"> </i> Definir</a>
 							
-                        <a href="?action=logout" class="btn btn-danger btn-sm">deconnexion</a>
+                        <a href="?action=logout" id="dec" class="btn btn-danger btn-sm">deconnexion</a>
 			     </div>
+
+				 <script>
+					 $('#dec').click(()=>{
+						 let x = confirm('voulez-vous vraiment vous déconnecter?');
+						 if(x != true) return false
+						 else return true;
+					 })
+				 </script>
 				 <div class="clearfix"> </div>
 				<!--top-nav-->
 		 </div>
@@ -127,6 +147,18 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 
 
   <div class="container">
+	  <br>
+	  <a class="<?= $active5 ?>" id="doc" style="background:gray; padding:2%; margin:2%;" href="?action=add_actor"><i class="glyphicon glyphicon-book"> </i>Acteur</a>
+	  <a class="<?= $active5 ?>" id="doc" style="background:gray; padding:2%; margin:2%;" href="?action=notification_intercep"><i class="glyphicon glyphicon-book"> </i>Notification d'interception</a>
+  <a class="<?= $active5 ?>" id="doc" style="background:green; padding:2%; margin:2%;" href="?action=doc"><i class="glyphicon glyphicon-book"> </i>Doc</a>
+	 <style>
+		 #doc:hover{
+			background:lightgreen;
+		 }
+		 #doc{
+			 border: 1px so
+		 }
+	 </style>
 	  <center>
 			<div class="cont">
 			
@@ -134,7 +166,10 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 			</div>
 	  </center>
   </div>
-  <br><br><br><br><br><br>
+  
+  <br><br><br><br>
+  <span style="color:green;">&copy; Green Consolidis</span> 
+  <br><br>
 	</body>
 	
 

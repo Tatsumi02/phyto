@@ -1,7 +1,8 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Importation mensuelle en cargaison' ?>
 
 <?php ob_start() ?>
 <br><br>
+<div id="si8">
 <div class="container" style="background:white; padding:2%; text-align:left;">
     <h2>Importations mensuelle en cargaisons du mois de <?= $nom ?></h2>
     <br><br>
@@ -11,7 +12,7 @@
     <tr>
       <th>N°</th>
       <th>Spéculation</th>
-      <th>Produits</th>
+     
       <th> Quantité(Kg) </th>
       <th>Pays de destination</th>
       
@@ -23,7 +24,7 @@
         $poid_tone = 0;
             while($EXP = $importsx -> fetch()){
                 $produitx = $getter->getProduitBy($EXP['produit_id']);
-                $produitx2 = $getter->getProduitBy($EXP['produit_id']);
+                
                 $paysx = $getter->getPaysBy($EXP['pays']);
                 $poid_t += $EXP['poid'];
       ?>
@@ -44,9 +45,6 @@
                 ?>
 
 
-                <?php while($produits =  $produitx2 -> fetch()){ ?>
-                <td> <?= $produits['nom'] ?> </td>
-                <?php } ?>
 
                     <td> <?= $EXP['poid'] ?> Kg &nbsp; (<?= $EXP['poid'] / 1000 ?> t) </td>
                     
@@ -76,7 +74,13 @@
       ?>
 
       <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
-<br><br><br>
+      </div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si8')" class="btn btn-success">Imprimer</button>
+
+      <br><br><br>
 <?php $content = ob_get_clean() ?>
 
 <?php 

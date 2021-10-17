@@ -52,9 +52,10 @@ function save_acteur(){
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $phone = htmlspecialchars($_POST['phone']);
+    $nc = htmlspecialchars($_POST['nc']);
 
     $getter = new Admin();
-    $push = $getter->push_acteur($nom,$prenom,$phone);
+    $push = $getter->push_acteur($nom,$prenom,$phone,$nc);
 
     header('location:?action=acteur&success');
 

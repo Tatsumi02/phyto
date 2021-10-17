@@ -1,4 +1,4 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Exportation' ?>
 
 <?php ob_start() ?>
 <br><br>
@@ -38,7 +38,7 @@
                 <label for="typ">Type</label>
                 <select name="type" id="typ" class="form-control">
                     <option value="indef">-------</option>
-                    <option value="Soutes">Soutes</option>
+                    <option value="Soutes">Bagage a Soutes</option>
                     <option value="Cargaisons">Cargaisons</option>
                 </select>
 
@@ -69,6 +69,10 @@
                         }
                     ?>
             </select>
+
+            <br>
+            <input type="text" class="form-control" name="num_c" placeholder="numero de certification">
+        
 
             <br>
             <label for="date_import">Date exportation</label>

@@ -1,4 +1,4 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Phyto' ?>
 
 <?php ob_start() ?>
 <br><br>
@@ -21,8 +21,8 @@
         <form action="?action=save_acteur" method="post"  style="text-align:left;">
             <input type="text" required class="form-control" name="nom" placeholder="Nom acteur" /><br>
             <input type="text"  class="form-control" name="prenom" placeholder="Prenom acteur" /> <br>
-            <input type="number" required class="form-control" name="phone" placeholder="Phone acteur" /> <br>
-           
+            <input type="number" class="form-control" name="phone" placeholder="Phone acteur" /> <br>
+           <input type="number" name="nc" class="form-control" placeholder="Numero de certification" id="">
             <button type="submit" class="btn btn-primary">Enregistré</button>
         </a>
         </form>

@@ -1,9 +1,9 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Phyto' ?>
 
 <?php ob_start() ?>
 <br><br>
 <div class="container" style="background:white; padding:2%; text-align:left;">
-    <h2>Les Exportations mensuelle en soutes </h2>
+    <h2>Les Exportations mensuelle en Bagage a soutes </h2>
     <br><br>
     <div class="alert alert-warning">
         <b>

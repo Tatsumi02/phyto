@@ -15,13 +15,14 @@ class Admin extends Manager
             return $r;
         }
 
-        public function push_acteur($nom,$prenom,$phone){
+        public function push_acteur($nom,$prenom,$phone,$nc){
             $db = $this -> dbConnect();
-            $r = $db -> prepare('INSERT INTO acteurs VALUES(0,:nom,:prenom,:phone)');
+            $r = $db -> prepare('INSERT INTO acteurs VALUES(0,:nom,:prenom,:phone,:nc)');
             $r -> execute(array(
                 'nom' => $nom,
                 'prenom' => $prenom,
-                'phone' =>$phone
+                'phone' =>$phone,
+                'nc' => $nc, 
                 ));
 
             return $r;
@@ -48,7 +49,7 @@ class Admin extends Manager
 
         public function findListProduit(){
             $db = $this -> dbConnect();
-            $r = $db -> prepare('SELECT * FROM produits ');
+            $r = $db -> prepare('SELECT * FROM produits ORDER BY id ASC ');
             $r -> execute();
 
             return $r;
@@ -64,7 +65,7 @@ class Admin extends Manager
 
         public function findListSpeculation(){
             $db = $this -> dbConnect();
-            $r = $db -> prepare('SELECT * FROM speculations ');
+            $r = $db -> prepare('SELECT * FROM speculations ORDER BY nom ASC');
             $r -> execute();
 
             return $r;
@@ -80,7 +81,7 @@ class Admin extends Manager
 
         public function findListActeur(){
             $db = $this -> dbConnect();
-            $r = $db -> prepare('SELECT * FROM acteurs ');
+            $r = $db -> prepare('SELECT * FROM acteurs ORDER BY nom ASC');
             $r -> execute();
 
             return $r;

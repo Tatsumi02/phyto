@@ -1,9 +1,10 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Importation mensuelle en soute' ?>
 
 <?php ob_start() ?>
 <br><br>
+<div id="si5">
 <div class="container" style="background:white; padding:2%; text-align:left;">
-    <h2>Importations mensuelle en soutes du mois de <?= $nom ?></h2>
+    <h2>Importations mensuelle en Bagage a soutes du mois de <?= $nom ?></h2>
     <br><br>
     <table style="background-color: white;" class="table table-bordered table-striped table-condensed">
   
@@ -11,9 +12,10 @@
     <tr>
       <th>N°</th>
       <th>Spéculation</th>
-      <th>Produits</th>
+      
       <th> Quantité(Kg) </th>
-      <th>Pays de destination</th>
+      <th>Pays de provenance</th>
+      <th>Importateurs</th>
       
     </tr>
   </thead>
@@ -23,7 +25,7 @@
         $poid_tone = 0;
             while($EXP = $importsx -> fetch()){
                 $produitx = $getter->getProduitBy($EXP['produit_id']);
-                $produitx2 = $getter->getProduitBy($EXP['produit_id']);
+                $importateurs = $getter->getActeurBy($EXP['importateur_id']);
                 $paysx = $getter->getPaysBy($EXP['pays']);
                 $poid_t += $EXP['poid'];
       ?>
@@ -41,18 +43,10 @@
                 <?php
                      }
                     }
+                    
                 ?>
 
-                <?php
-                     while($produits = $produitx2 -> fetch()){
-                ?>
-
-                      <td><?= $produits['nom'] ?></td>
-
-                <?php
-                     }
-                ?>
-
+               
                     <td> <?= $EXP['poid'] ?> Kg &nbsp; (<?= $EXP['poid'] / 1000 ?> t) </td>
                     
                 <?php 
@@ -62,6 +56,11 @@
                 <?php
                      }
                 ?>
+
+                    <td> <?php while($im = $importateurs -> fetch()){ ?>
+                    <?= $im['nom'] ?>
+                  <?php } ?>
+                </td>
 
                 </tr>
       <?php
@@ -82,6 +81,12 @@
 
       <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
 <br><br><br>
+</div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si5')" class="btn btn-success">Imprimer</button>
+
 <?php $content = ob_get_clean() ?>
 
 <?php 

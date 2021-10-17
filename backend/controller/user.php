@@ -33,15 +33,23 @@
         $poid = htmlspecialchars($_POST['poid']);
         $exportateur_id = htmlspecialchars($_POST['exportateur_id']);
         $type = htmlspecialchars($_POST['type']);
-        $produit = htmlspecialchars($_POST['produits']);
+        $produit = $_POST['produit'];
         $pays = htmlspecialchars($_POST['pays']);
         $annee = date('Y');
         $mois = date('m');
+        $num_c = $_POST['num_c'];
         $date_export = 'indef';
+
+        $produit_list = '';
         
+        foreach($produit as $prod){
+            $produit_list .= $prod.',';
+        }
+        
+    
         
         $getter = new User();
-        $pushEport = $getter -> pushExport($poid,$exportateur_id,$type,$produit,$pays,$annee,$mois,$date_export);
+        $pushEport = $getter -> pushExport($num_c,$poid,$exportateur_id,$type,$produit_list,$pays,$annee,$mois,$date_export);
 
         // echo 'exportation effectuer avec success';
         header('location:?action=exportation&success');
@@ -58,7 +66,7 @@
          // recuperons les acteurs
          $getter = new User();
          $acteurs = $getter->getActeur();
-         $produit = $getter->getproduit();
+         $speculations = $getter->getSpeculation();
          $pays = $getter->getPays();
      
         require 'frontend/view/user/importation.php';
@@ -390,6 +398,7 @@
         $type = htmlspecialchars($_POST['type']);
         $produit = htmlspecialchars($_POST['produits']);
         $pays = htmlspecialchars($_POST['pays']);
+        $num_c = $_POST['num_c'];
         
         $date_export = htmlspecialchars($_POST['date_export']);
 
@@ -400,7 +409,7 @@
         
        
         $getter = new User();
-        $pushEport = $getter -> pushExport($poid,$exportateur_id,$type,$produit,$pays,$annee,$mois,$date_export);
+        $pushEport = $getter -> pushExport($num_c,$poid,$exportateur_id,$type,$produit,$pays,$annee,$mois,$date_export);
 
         // echo 'exportation effectuer avec success';
         header('location:?action=defini_exportation&success');
@@ -445,6 +454,213 @@
         // echo 'exportation effectuer avec success';
         header('location:?action=defini_importation&success');
 
+    }
+
+    function evolution_import(){
+
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $getter = new User();
+        $importation = $getter -> getImportation();
+        $tout_produit = $getter -> getproduit();
+
+        require 'frontend/view/user/evolution_import.php';
+    }
+
+    function export_mensuelle_cargaisons(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $active4 = 'active';
+
+        require 'frontend/view/user/export_mensuelle_soute.php';
+    }
+
+    function export_mensu_carg_view(){
+        $mois = $_GET['mois'];
+        $nom = htmlspecialchars($_GET['nom']);
+
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $active4 = 'active';
+        $getter = new User();
+
+        $importsx = $getter->findExportMensuCarg($mois,date('Y'));
+
+        require 'frontend/view/user/export_mensu_carg_view.php';
+    }
+
+    function import_annuelle_soute() {
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+
+        $getter = new User();
+         $ans = $getter->getExportAnuelle();
+        //  creons un tableau qui doit contenir des annees
+        $tab_an = array();
+        $nb = 0;
+       
+        $ann = date('Y');
+        $ann2 = $ann-1;
+        $ann3 = $ann2-1;
+        $ann4 = $ann3-1;
+
+         $active4 = 'active';
+        
+         require 'frontend/view/user/import_annuelle_soute.php';
+    }
+
+    function import_annu_soute_view(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $annee = (int)$_GET['annee'];
+        $active4 = 'active';
+
+        $getter = new User();
+        $export = $getter->getImportAnnuSouteBy($annee);
+
+        require 'frontend/view/user/import_annu_soute_view.php';
+    }
+
+    function add_actor(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+       require 'frontend/view/user/add_actor.php';
+    }
+
+    function start_produits(){
+
+        require 'frontend/view/user/stat_product.php';
+    }
+
+    function stat_prod_import(){
+        
+        require 'frontend/view/user/stat_prod_import.php';
+    }
+
+    function list_product_export(){ 
+
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        
+        $active4 = 'active';
+
+        $getter = new User();
+        $product = $_POST['product'];
+        $importsx = $getter->getProduitByName($product);
+
+        require 'frontend/view/user/search_prod_import.php';
+    }
+
+    function notification_intercep(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $is = 0;
+
+        if(isset($_GET['succ'])){
+          $is = 1;
+        }
+
+        $getter = new User();
+        $acteurs = $getter->getActeur(); 
+        $pays = $getter->getPays();
+
+        require 'frontend/view/user/notification_intercep.php';
+    }
+
+    function save_certificat(){
+        $date = $_POST['date'];
+        $num_notif = $_POST['num_notif'];
+        $nature_produit = $_POST['nature_produit'];
+        $quantite_intercepter = $_POST['quantite_intercepter'];
+        $quantite_date = $_POST['quantite_date'];
+        $exportateur = $_POST['exportateur'];
+        $mesure = $_POST['mesure'];
+        $num_certi_phyto = $_POST['num_certi_phyto'];
+        $modif = $_POST['motif'];
+        $pays = $_POST['pays'];
+
+
+        $getter = new User();
+        $getter->setCertificat($date,$pays,$num_notif,$modif,$nature_produit,$quantite_intercepter,$quantite_date,$exportateur,$mesure,$num_certi_phyto);
+        
+        header('location:?action=notification_intercep&succ');
+
+    }
+
+    function notif_inter(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $getter = new User();
+        $notifis = $getter->getNotification();
+
+        require 'frontend/view/user/notif_inter.php';
+    }
+
+    function notif_inter2(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $is = 0;
+
+        if(isset($_GET['succ'])){
+          $is = 1;
+        }
+
+        $getter = new User();
+        $acteurs = $getter->getActeur(); 
+        $pays = $getter->getPays();
+
+        require 'frontend/view/user/notif_inter2.php';
+    }
+
+    function save_certificat2(){
+        $date = $_POST['date'];
+        $num_notif = $_POST['num_notif'];
+        $nature_produit = $_POST['nature_produit'];
+        $quantite_intercepter = $_POST['quantite_intercepter'];
+        $quantite_date = $_POST['quantite_date'];
+        $exportateur = $_POST['exportateur'];
+        $mesure = $_POST['mesure'];
+        $num_certi_phyto = $_POST['num_certi_phyto'];
+        $modif = $_POST['motif'];
+        $pays = $_POST['pays'];
+
+
+        $getter = new User();
+        $getter->setCertificat2($date,$pays,$num_notif,$modif,$nature_produit,$quantite_intercepter,$quantite_date,$exportateur,$mesure,$num_certi_phyto);
+        
+        header('location:?action=notif_inter2&succ');
+
+    }
+
+    function notif_interImp(){
+        if(!$_SESSION['id']){  
+            header('location:?');
+        }
+
+        $getter = new User();
+        $notifis = $getter->getNotification2();
+
+        require 'frontend/view/user/notif_interAffichage.php';
     }
 
     

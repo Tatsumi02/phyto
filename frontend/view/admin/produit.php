@@ -1,4 +1,4 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Phyto' ?>
 
 <?php ob_start() ?>
 <br><br>

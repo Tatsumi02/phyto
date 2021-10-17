@@ -1,9 +1,10 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Exportations mensuelles en soute' ?>
 
 <?php ob_start() ?>
+<div id="si9">
 <br><br>
 <div class="container" style="background:white; padding:2%; text-align:left;">
-    <h2>Exportations mensuelle en soutes du mois de <?= $nom ?></h2>
+    <h2>Exportations mensuelle en Bagage a soutes du mois de <?= $nom ?></h2>
     <br><br>
     <table style="background-color: white;" class="table table-bordered table-striped table-condensed">
   
@@ -14,6 +15,7 @@
       <th>Produits</th>
       <th> Quantité(Kg) </th>
       <th>Pays de destination</th>
+      <th>N° certificat</th>
       
     </tr>
   </thead>
@@ -58,6 +60,8 @@
                      }
                 ?>
 
+                <td><?= $EXP['num_c'] ?></td>
+
                 </tr>
       <?php
             }
@@ -76,7 +80,13 @@
       ?>
 
       <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
-<br><br><br>
+      </div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si9')" class="btn btn-success">Imprimer</button>
+
+      <br><br><br>
 <?php $content = ob_get_clean() ?>
 
 <?php 

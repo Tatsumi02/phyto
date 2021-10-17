@@ -45,4 +45,24 @@ function connecteur(){
         session_destroy();
         header('location:?');
     }
+
+    function doc(){
+        
+        require 'frontend/view/doc/home.php';
+    }
+
+    function doc_installation(){
+
+        require 'frontend/view/doc/installation.php';
+    }
+
+    function  doc_def_transaction(){
+
+        require 'frontend/view/doc/doc_def_transaction.php';
+    }
+
+    function doc_stat(){
+
+        require 'frontend/view/doc/doc_stat.php';
+    }
        

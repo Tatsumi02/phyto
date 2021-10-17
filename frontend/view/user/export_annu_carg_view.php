@@ -1,19 +1,25 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Exportation en cargaison' ?>
 
 <?php ob_start() ?>
+
+
+
 <br><br>
+<div id="si10">
 <div class="container" style="background:white; padding:2%; text-align:left;">
   <h2> exportations en cargaisons pour l'annee <?= $annee ?> </h2>
   <br><br>
+
 <table style="background-color: white;" class="table table-bordered table-striped table-condensed">
   
   <thead>  
     <tr>
       <th>N°</th>
-      <th>Spéculation</th>
+      
       <th>Produits</th>
       <th> Quantité(Kg) </th>
       <th>Pays de destination</th>
+      <th>N° certificat</th>
       
     </tr>
   </thead>
@@ -30,24 +36,10 @@
                 <tr>
                     <td> <?= $nb++ ?> </td>
 
-                <?php 
-                     while($produits = $produitx -> fetch()){
-                        $speculationsx = $getter->getSpeculationBy($produits['speculation_id']);
-                         while($speculs = $speculationsx -> fetch()){
-                ?>
-
-                     <td> <?= $speculs['nom'] ?></td>
-
-                <?php
-                     }
-                    }
-                ?>
-
-                <?php 
-                    while($produits = $produitx2 -> fetch()){
-                ?>
-                     <td><?= $produits['nom'] ?></td> 
-                <?php } ?>
+              
+                
+                     <td><?= $EXP['produit_id'] ?></td> 
+              
 
 
 
@@ -63,6 +55,8 @@
                 <?php
                      }
                 ?>
+
+                <td><?= $EXP['num_c'] ?></td>
 
                 </tr>
       <?php
@@ -81,8 +75,16 @@
               }
       ?>
 
-      <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/100 ?> tonne (t) </h4>
-<br><br><br>
+      <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
+
+      </div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si10')" class="btn btn-success">Imprimer</button>
+
+      <br><br><br>
+     
 <?php $content = ob_get_clean() ?>
 
 <?php 

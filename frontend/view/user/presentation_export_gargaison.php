@@ -1,9 +1,10 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'statistique des exportations en cargaisons' ?>
 
 <?php ob_start() ?>
 <br><br>
+<div id="si2">
 <div class="container" style="background:white; padding:2%; text-align:left;">
-    <h2> presentation des exportations en cargaisons</h2>
+    <h2> statistique des exportations en cargaisons</h2>
     <div>
         <br><br>   
     <table style="background-color: white;" class="table table-bordered table-striped table-condensed">
@@ -17,6 +18,7 @@
       <th>Poids</th>
      
       <th>Date</th>
+      <th>N° certificat</th>
     </tr>
   </thead>
 
@@ -39,17 +41,10 @@
             ?>
                      <td> <?= $exps['type'] ?> </td>
 
-                <?php 
-                     while($produits = $produitx -> fetch()){
-                ?>
+               
+                     <td> <?= $exps['produit_id'] ?> </td>
 
-                     <td> <?= $produits['nom'] ?> </td>
-
-                <?php
-                     }
-                ?>
-
-
+               
                 <?php 
                      while($pays = $paysx -> fetch()){
                 ?>
@@ -63,19 +58,26 @@
                     
                          
                     
-                     <td> <?= $exps['date_exportation'] ?> </td>
+                     <td> <?= $exps['date_export'] ?> </td>
+                     <td><?= $exps['num_c'] ?></td>
                 </tr>
         <?php 
                 $poid_t += $exps['poid'];
             }
     
         ?>
+
+       
         
   </tbody>
 </table>
 <h4>Poids Total: <?= $poid_t ?> kg &nbsp; &nbsp; ou &nbsp; &nbsp; <?= $poid_t/1000 ?> t</h4>
-       
-    </div>
+</div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si2')" class="btn btn-success">Imprimer</button>
+
 <br><br><br>
 <?php $content = ob_get_clean() ?>
 

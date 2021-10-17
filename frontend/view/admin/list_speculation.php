@@ -1,4 +1,4 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Phyto' ?>
 
 <?php ob_start() ?>
 <br><br>
@@ -10,7 +10,7 @@
 
  ?>
     <h5 class="alert alert-warning">
-    <a href="?action=del_list_speculation&id=<?= $datas['id'] ?>" id="sp<?= $datas['id'] ?>" class="btn btn-danger" style="float:right;">supprimer</a>
+    <a disabled href="?action=del_list_speculation&id=<?= $datas['id'] ?>" id="sp<?= $datas['id'] ?>" class="btn btn-danger" style="float:right;">supprimer</a>
         <?= $datas['nom'] ?>
         <br>
        

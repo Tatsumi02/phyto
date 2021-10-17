@@ -6,6 +6,7 @@
 <title> <?= $title ?> </title>
 <link href="frontend/public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<link rel="shortcut icon" href="frontend/public/img/Green.PNG">
 <script src="frontend/public/js/jquery-1.11.0.min.js"></script>
 <!-- Custom Theme files -->
 <link href="frontend/public/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -85,7 +86,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
         justify-content:center;
     }
 	body{
-		background:url('frontend/public/img/cameroun_-_port_de_douala_fau_1788727612_dit-conteneurs_800xyyy-800x480.jpg');
+		background:url('frontend/public/img/c0r.jpg');
 		background-attachment:fixed;
 		background-size:cover;
 	}
@@ -101,6 +102,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
 			</div>
 	  </center>
   </div>
+  <span style="color:green;">&copy; Green Consolidis</span>
 	</body>
 
 </html>

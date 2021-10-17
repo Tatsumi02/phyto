@@ -1,7 +1,8 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Importation annuelle' ?>
 
 <?php ob_start() ?>
 <br><br>
+<div id="si6">
 <div class="container" style="background:white; padding:2%; text-align:left;">
   <h2> poids des importations pour l'annee <?= $annee ?> </h2>
   <br><br>
@@ -11,9 +12,10 @@
     <tr>
       <th>N°</th>
       <th>Spéculation</th>
-      <th>Produits</th>
+      
       <th> Quantité(Kg) </th>
       <th>Pays de destination</th>
+      <th>Importateur</th>
       
     </tr>
   </thead>
@@ -23,7 +25,7 @@
         $poid_tone = 0;
             while($EXP = $export -> fetch()){
                 $produitx = $getter->getProduitBy($EXP['produit_id']);
-                $produitx2 = $getter->getProduitBy($EXP['produit_id']);
+                $importateurs = $getter->getActeurBy($EXP['importateur_id']);
                 $paysx = $getter->getPaysBy($EXP['pays']);
                 $poid_t += $EXP['poid'];
       ?>
@@ -44,11 +46,7 @@
                 ?>
 
 
-                <?php while($produits2 = $produitx2 -> fetch()){ ?>
-                <td>
-                    <?= $produits2['nom'] ?>
-                </td>
-                <?php } ?>
+                
 
                     <td> <?= $EXP['poid'] ?> Kg &nbsp; (<?= $EXP['poid'] / 1000 ?> t) </td>
                     
@@ -59,6 +57,11 @@
                 <?php
                      }
                 ?>
+
+                  <td> <?php while($im = $importateurs -> fetch()){ ?>
+                    <?= $im['nom'] ?>
+                  <?php } ?>
+                </td>
 
                 </tr>
       <?php
@@ -78,6 +81,12 @@
       ?>
 
       <h4>Poid total = <?= $poid_t ?> Kg &nbsp; ou &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
+      </div>
+          </div>
+          </div>
+          <br><br>
+          <button onClick="imprimer('si6')" class="btn btn-success">Imprimer</button>
+
 <br><br><br>
 <?php $content = ob_get_clean() ?>
 

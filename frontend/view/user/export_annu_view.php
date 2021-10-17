@@ -1,7 +1,8 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Exportation annuelle' ?>
 
 <?php ob_start() ?>
 <br><br>
+<div id="sectionAimprimer">
 <div class="container" style="background:white; padding:2%; text-align:left;">
   <h2> poids des exportations pour l'annee <?= $annee ?> </h2>
   <br><br>
@@ -14,6 +15,7 @@
       <th>Produits</th>
       <th> Quantité(Kg) </th>
       <th>Pays de destination</th>
+      <th>N° certification</th>
       
     </tr>
   </thead>
@@ -63,6 +65,8 @@
                      }
                 ?>
 
+                <td><?= $EXP['num_c'] ?></td>
+
                 </tr>
       <?php
             }
@@ -71,7 +75,10 @@
   <tbody>
       
  </tbody>
+          
 </table>
+
+          </div>
   <?php
      if($nb == 1){
         ?>
@@ -80,8 +87,14 @@
               }
       ?>
 
-      <h4>Poid total = <?= $poid_t ?> Kg &nbsp; soit &nbsp; <?= $poid_t/100 ?> tonne (t) </h4>
-<br><br><br>
+      <h4 class="alert alert-warning container">Poid total = <?= $poid_t ?> Kg &nbsp; ou &nbsp; <?= $poid_t/1000 ?> tonne (t) </h4>
+  </div>          
+    
+      <br><br>
+      <button onClick="imprimer('sectionAimprimer')" class="btn btn-success">Imprimer</button>
+
+      <br><br><br>
+
 <?php $content = ob_get_clean() ?>
 
 <?php 

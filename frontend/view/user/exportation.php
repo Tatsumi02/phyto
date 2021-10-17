@@ -1,4 +1,4 @@
-<?php $title = 'Bienvenue Dans cet Atelier de formation' ?>
+<?php $title = 'Phyto' ?>
 
 <?php ob_start() ?>
 <br><br>
@@ -38,23 +38,26 @@
                 <label for="typ">Type</label>
                 <select name="type" id="typ" class="form-control">
                     <option value="indef">-------</option>
-                    <option value="Soutes">Soutes</option>
+                    <option value="Soutes">Bagage a Soutes</option>
                     <option value="Cargaisons">Cargaisons</option>
                 </select>
-
+                
+                <br>
             <label for="produit">Produit</label>
-            <select name="produits" id="produit" class="form-control">
-                    <option value="indef">--------</option>
+            <div style="overflow-y:scroll; height:250px;">
+                   
                    <?php 
                         while($prod = $produit -> fetch()){
                     ?>
-                        <option value="<?= $prod['id'] ?>">
-                            <?= $prod['nom']; ?>
-                        </option>
+                        <input type="checkbox" id="i<?= $prod['id'] ?>" value="<?= $prod['nom'] ?>" name="produit[]">
+                            <label for="i<?= $prod['id'] ?>">
+                                <?= $prod['nom']; ?>
+                            </label>
+                       <br>
                     <?php
                         }
                    ?>
-            </select>
+            </div>
 
             <label for="pays">Pays de destination</label>
             <select name="pays" class="form-control" id="pays">
@@ -69,7 +72,10 @@
                         }
                     ?>
             </select>
-
+            <br>
+            <input type="text" class="form-control" name="num_c" placeholder="numero de certification">
+        
+           
             <!-- <br>
             <label for="date_import">Date exportation</label>
             <input type="date" class="form-control" id="date_import" name="date_export" /> -->
