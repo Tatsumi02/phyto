@@ -17,9 +17,9 @@
     <br>
     <p>
         <form action="?action=save_exportation" method="post"  style="text-align:left;">
-            <input type="number" required class="form-control" name="poid" placeholder="Poid en Kg" /><br>
-           
-           <label for="acteur">Exportateur</label>
+            <!-- <input type="number" required class="form-control" name="poid" placeholder="Poid en Kg" /><br>
+            -->
+           <label for="acteur" id="wan0">Exportateur</label>
            <select name="exportateur_id" class="form-control" id="acteur">
                 <option value="indef">----</option>
                 <?php
@@ -35,7 +35,7 @@
                 
            </select>
 
-                <label for="typ">Type</label>
+                <label for="typ" id="wan">Type</label>
                 <select name="type" id="typ" class="form-control">
                     <option value="indef">-------</option>
                     <option value="Soutes">Bagage a Soutes</option>
@@ -48,10 +48,12 @@
                    
                    <?php 
                         while($prod = $produit -> fetch()){
-                    ?>
+                    ?> 
+                        <input type="text" name="<?= $prod['nom']; ?>" value="0 kg" placeholder="poid" size=6 required />
                         <input type="checkbox" id="i<?= $prod['id'] ?>" value="<?= $prod['nom'] ?>" name="produit[]">
                             <label for="i<?= $prod['id'] ?>">
-                                <?= $prod['nom']; ?>
+                                <?= $prod['nom']; ?> 
+                               
                             </label>
                        <br>
                     <?php
@@ -59,7 +61,7 @@
                    ?>
             </div>
 
-            <label for="pays">Pays de destination</label>
+            <label for="pays" id="wan2">Pays de destination</label>
             <select name="pays" class="form-control" id="pays">
                     <option value="indef">----------</option>
                     <?php 
@@ -73,14 +75,14 @@
                     ?>
             </select>
             <br>
-            <input type="text" class="form-control" name="num_c" placeholder="numero de certification">
+            <input type="text" class="form-control" name="num_c" placeholder="numero de certification" required>
         
            
             <!-- <br>
             <label for="date_import">Date exportation</label>
             <input type="date" class="form-control" id="date_import" name="date_export" /> -->
             <br><br>
-            <button type="submit" class="btn btn-primary">Effectuer l'exportation</button>
+            <button type="submit" class="btn btn-primary" id="but">Effectuer l'exportation</button>
         </a>
         </form>
     </p>
@@ -95,6 +97,44 @@
             clearInterval(compteur);
         }
     }, 800);
+
+    
+
+    $('#but').click(()=>{
+                let selectElement = document.getElementById('acteur');
+                let selectElement2 = document.getElementById('typ');
+                let selectElement3 = document.getElementById('pays');
+
+                let choix = selectElement.selectedIndex;
+                let valeur = selectElement.options[choix].value;
+
+                let choix2 = selectElement2.selectedIndex;
+                let valeur2 = selectElement2.options[choix2].value;
+
+                let choix3 = selectElement3.selectedIndex;
+                let valeur3 = selectElement3.options[choix3].value;
+
+
+
+
+                 if(valeur == 'indef'){
+                     $('#wan0').hide().show('slow').html('<span style="color:red;">Vous n\'avez pas choisir un exportateur</span>')
+                    return false;
+                 }else if(valeur2== 'indef'){
+                    $('#wan').hide().show('slow').html('<span style="color:red;">Vous n\'avez pas choisir un type</span>')
+                    return false;
+                 }else if(valeur3== 'indef'){
+                    $('#wan2').hide().show('slow').html('<span style="color:red;">Vous n\'avez pas choisir un Pays</span>')
+                    return false;
+                 }else{
+                    $('#wan0 #wan').hide().show('slow').html('')
+                    return true;
+                 }
+
+
+            })
+
+
 </script>
 <br><br><br>
 <?php $content = ob_get_clean() ?>

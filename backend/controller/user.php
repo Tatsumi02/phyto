@@ -41,17 +41,22 @@
         $date_export = 'indef';
 
         $produit_list = '';
+
+        $poid_total = 0; // pour le poid total des produits choisir  
         
         foreach($produit as $prod){
-            $produit_list .= $prod.',';
+            
+                $produit_list .= $prod.'('. $_POST[''.$prod.''].'),<br />';
+                $poid_total += (int)$_POST[''.$prod.''];
+
         }
         
     
         
         $getter = new User();
-        $pushEport = $getter -> pushExport($num_c,$poid,$exportateur_id,$type,$produit_list,$pays,$annee,$mois,$date_export);
+        $pushEport = $getter -> pushExport($num_c,$poid_total,$exportateur_id,$type,$produit_list,$pays,$annee,$mois,$date_export);
 
-        // echo 'exportation effectuer avec success';
+        
         header('location:?action=exportation&success');
 
     }
