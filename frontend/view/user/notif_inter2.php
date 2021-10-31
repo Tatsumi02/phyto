@@ -30,7 +30,7 @@
         <br>
         <input required type="text" name="quantite_intercepter" class="form-control" placeholder="quantité intercepter" id="" />
         <br>
-        <input required type="text" name="quantite_date" class="form-control" placeholder="Quantite expediee et date d'importation">
+        <input required type="text" name="quantite_date" class="form-control" placeholder="Quantite importée et date d'importation">
         <br>
         <label for="e">Importateur</label>
         <select required name="exportateur" id="" class="form-control">

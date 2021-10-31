@@ -18,11 +18,11 @@
       <th>Nature des produits intercepter</th>
       <th>Quantite intercepte</th>
      
-      <th>Quantite expediee et date d'expedition</th>
+      <th>Quantite importée et date d'importation</th>
       <th>Importateur</th>
       <th>Mesure prescites</th>
       <th>N° certificat phytosanitaire</th>
-      <th>Pays de destination</th>
+      <th>Pays de provenance</th>
     </tr>
   </thead>
 
